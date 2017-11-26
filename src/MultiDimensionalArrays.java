@@ -10,7 +10,13 @@ public class MultiDimensionalArrays {
 	public String allNumbers() {
 		String s = "";
 
-		// TODO
+		for(int i = 0; i < numbers.length; i++)
+		{
+			for(int j = 0; j < numbers[i].length; j++)
+			{
+				s = s + numbers[i][j];
+			}
+		}
 
 		return s;
 	}
@@ -18,7 +24,14 @@ public class MultiDimensionalArrays {
 	public int numberOfThrees() {
 		int count = 0;
 
-		// TODO
+		for(int i = 0; i < numbers.length; i++)
+		{
+			for(int j = 0; j < numbers[i].length; j++)
+			{
+				if(numbers[i][j] == 3)
+					count++;
+			}
+		}
 
 		return count;
 	}
@@ -30,8 +43,39 @@ public class MultiDimensionalArrays {
 		boolean hasThree = false;
 		int foundRow = 0;
 		int foundCol = 0;
-		// TODO
-		
+
+		int lastNum, count = 0;
+
+		for(; foundRow < numbers.length || !hasThree; foundRow++)
+		{
+			lastNum = numbers[foundRow][0];
+
+			for(int j = 1; j < numbers[foundRow].length; j++)
+			{
+				if(lastNum == numbers[foundRow][j])
+				{
+					count++;
+
+					if(count >= 2)
+					{
+						hasThree = true;
+						break;
+					}
+				}
+				else
+				{
+					count = 0;
+					foundCol = j;
+				}
+
+				lastNum = numbers[foundRow][j];
+			}
+			if(hasThree)
+				break;
+		}
+
+
+
 		if (hasThree) {
 			System.out.println("Found three in a row on row " + foundRow + " starting at column " + foundCol);
 		} else {
